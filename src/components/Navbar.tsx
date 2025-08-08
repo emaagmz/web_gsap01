@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
-import { navLinks } from '../../constants';
+import { navLinks } from '../../constants/index';
 import gsap from 'gsap';
 
 export interface NavLinks {
@@ -33,7 +33,7 @@ const Navbar = () => {
     <nav className="">
         <div className="">
             <a href="#" className="flex items-center gap-2">
-                <img src="../assets/images/logo.png" alt="logo" />
+                <img src="/images/logo.png" alt="logo" />
                 <p>Velvet Pour</p>
             </a>
             <ul>
