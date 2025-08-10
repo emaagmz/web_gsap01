@@ -4,14 +4,8 @@ import { SplitText } from "gsap/all";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
-export interface videoRef {
-    current: HTMLVideoElement | null;
-    duration: number | null;
-    ref: React.RefObject<HTMLVideoElement>;
-}
-
 const Hero = () => {
- const videoRef = useRef<videoRef>(null);
+ const videoRef = useRef<HTMLVideoElement>(null);
 
  const isMobile = useMediaQuery({ maxWidth: 767 });
  
@@ -69,11 +63,13 @@ const Hero = () => {
 	 },
 	});
 	
-	videoRef.current.onloadedmetadata = () => {
-	 tl.to(videoRef.current, {
-		currentTime: videoRef.current.duration,
-	 });
-	};
+	if (videoRef.current) {
+		videoRef.current.onloadedmetadata = () => {
+			tl.to(videoRef.current, {
+				currentTime: videoRef.current?.duration,
+			});
+		};
+	}
  }, []);
  
  return (
@@ -117,7 +113,7 @@ const Hero = () => {
 	 
 	 <div className="video absolute inset-0">
 		<video
-		 ref={videoRef}
+		ref={videoRef}
 		 muted
 		 playsInline
 		 preload="auto"
